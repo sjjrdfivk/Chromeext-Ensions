@@ -1,0 +1,31 @@
+{
+    "name": "MyExtension",
+    "description": "插件开发",
+    "version": "1",
+    "manifest_version": 2,
+    "browser_action": {
+        "default_title": "My Message",
+        "default_popup": "popup.html"
+    },
+    "icons":{
+        "16":"icon.png",
+        "48":"icon.png"
+    },
+    "background":{
+        "script": ["bg.js"]
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://www.baidu.com/*","https://fanyi.baidu.com/*"
+            ],
+            "js": [
+                "content_js.js"
+            ],
+            "css": [
+                "content.css"
+            ],
+            "run_at": "document_start"
+        }
+    ]
+}
