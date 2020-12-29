@@ -1,31 +1,45 @@
 {
-    "name": "MyExtension",
-    "description": "插件开发",
-    "version": "1",
-    "manifest_version": 2,
-    "browser_action": {
-        "default_title": "My Message",
-        "default_popup": "popup.html"
-    },
-    "icons":{
-        "16":"icon.png",
-        "48":"icon.png"
-    },
-    "background":{
-        "script": ["bg.js"]
-    },
-    "content_scripts": [
-        {
-            "matches": [
-                "https://www.baidu.com/*","https://fanyi.baidu.com/*"
-            ],
-            "js": [
-                "content_js.js"
-            ],
-            "css": [
-                "content.css"
-            ],
-            "run_at": "document_start"
-        }
+  "name": "Hello world",
+  "description": "Hello world Extension",
+  "version": "1.0",
+  "manifest_version": 2,
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_title": "Test"
+  },
+  "content_scripts": [ {
+    "js": ["js/content_scripts.js"],
+    "css": ["css/content.css"],
+    "matches": ["<all_urls>"],
+    "run_at": "document_end"
+ }],
+  "background": {
+    "scripts": [
+      "js/background.js"
     ]
+  },
+  "options_page": "options.html",
+  "devtools_page": "devtools.html",
+  "icons": {
+    "48": "icons/icon.png",
+    "16": "icons/icon.png"
+  },
+  "permissions": [
+    "proxy",
+    "tabs",
+    "activeTab",
+    "storage",
+    "contextMenus",
+    "webRequest",
+    "webRequestBlocking",
+    "webNavigation",
+    "unlimitedStorage",
+    "notifications",
+    "http://*/*",
+    "https://*/*",
+    "ftp://*/*"
+  ],
+  "web_accessible_resources": [
+	  "js/*","css/*"
+  ]
 }
