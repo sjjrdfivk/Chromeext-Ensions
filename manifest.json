@@ -35,6 +35,7 @@
     "webNavigation",
     "unlimitedStorage",
     "notifications",
+    "declarativeContent",
     "http://*/*",
     "https://*/*",
     "ftp://*/*"
