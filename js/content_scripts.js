@@ -12,20 +12,20 @@ if (location.origin.indexOf('baidu') !== -1) {
   document.head.appendChild($link)
 }
 
-//变动观察器
-// var observer = new MutationObserver(function (mutations, observer) {
-//   const $link = document.createElement("link");
-//   $link.href = chrome.extension.getURL("css/content-d.css");
-//   $link.type = "text/css";
-//   $link.rel = "stylesheet";
-//   document.head.appendChild($link)
-// });
-// var el = document.querySelector('#wrapper_wrapper');
-// var options = {
-//   'childList': true,
-//   'attributes': true
-// };
-// observer.observe(el, options);
+// 变动观察器
+var observer = new MutationObserver(function (mutations, observer) {
+  const $link = document.createElement("link");
+  $link.href = chrome.extension.getURL("css/content-d.css");
+  $link.type = "text/css";
+  $link.rel = "stylesheet";
+  document.head.appendChild($link)
+});
+var el = document.querySelector('#wrapper_wrapper');
+var options = {
+  'childList': true,
+  'attributes': true
+};
+observer.observe(el, options);
 
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
