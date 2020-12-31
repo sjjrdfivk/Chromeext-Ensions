@@ -1,3 +1,12 @@
 #content_right{
-  display: none;
+  display: none !important;
+}
+
+#content_left>div[style='display:block !important;visibility:visible !important'] {
+  height: 0;
+  overflow: hidden;
+}
+#content_left>div[class='result c-container'] {
+  height: 0;
+  overflow: hidden;
 }
