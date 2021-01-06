@@ -1,14 +1,15 @@
 {
-  "name": "Hello world",
-  "description": "Hello world Extension",
+  "name": "青春帅气的插件",
+  "description": "给帅气的人使用",
   "version": "1.0",
   "manifest_version": 2,
+  "author": "REX.Q",
   "browser_action": {
     "default_popup": "popup.html",
     "default_title": "Test"
   },
   "content_scripts": [ {
-    "js": ["js/jquery.js","js/content_scripts.js"],
+    "js": ["js/content_scripts.js"],
     "css": ["css/content.css"],
     "matches": ["<all_urls>"],
     "run_at": "document_end"
@@ -36,11 +37,13 @@
     "unlimitedStorage",
     "notifications",
     "declarativeContent",
+    "bookmarks",
     "http://*/*",
     "https://*/*",
     "ftp://*/*"
   ],
   "web_accessible_resources": [
-	  "js/*","css/*"
-  ]
+	  "js/*","css/*","bookmarks.html"
+  ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 }

@@ -7,11 +7,34 @@ chrome.contextMenus.create({
 	}
 });
 
+chrome.contextMenus.create({
+	title: 'JSON解析：%s', // %s表示选中的文字
+	contexts: ['selection'], // 只有当选中文字时才会出现此右键菜单
+	onclick: function (params) {
+		chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+			localStorage.jsonData = params.selectionText
+			chrome.windows.create({ url: chrome.extension.getURL('demo_json.html') })
+		});
+	}
+});
+
+// 右键复制
+chrome.contextMenus.create({
+	title: '复制：%s', // %s表示选中的文字
+	contexts: ['selection'],
+	onclick: function (params) {
+		document.oncopy = function(event) {
+			event.clipboardData.setData("text", params.selectionText);
+			event.preventDefault();
+		};
+		document.execCommand("copy", false, null);
+	}
+});
 
 //background 接受来自 contentscript 的消息
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-		console.log(sender , "来自内容脚本：" + sender.tab.url + "来自应用");
-		sendResponse({ status: 200 }); //回复
+	console.log(sender, "来自内容脚本：" + sender.tab.url + "来自应用");
+	sendResponse({ status: 200 }); //回复
 });
 
 
@@ -23,21 +46,6 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 // 	return {"responseHeaders": responseHeaders};
 // }, {"urls": ["http://*/*", "https://*/*"]}, ["blocking", "responseHeaders", "extraHeaders"]);
 
-chrome.contextMenus.create({
-	title: 'JSON解析：%s', // %s表示选中的文字
-  	contexts: ['selection'], // 只有当选中文字时才会出现此右键菜单
-	onclick: function(params)
-	{
-		// const $iframe = document.createElement('iframe')
-		// $iframe.src = chrome.extension.getURL('demo_json.html');
-		// document.body.appendChild($iframe);
-		chrome.tabs.query({active: true, currentWindow: true}, function(tabs)
-	{
-		localStorage.jsonData = params.selectionText
-		chrome.windows.create({url:chrome.extension.getURL('demo_json.html')})
-	});
-	}
-});
 
 // chrome.tabs.onCreated.addListener(function (tabId,changeInfo) {
 // 	console.log(1,tabId,changeInfo)

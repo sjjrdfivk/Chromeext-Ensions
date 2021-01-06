@@ -1,4 +1,4 @@
-/* #content_right{
+#content_right{
   display: none !important;
 }
 
@@ -9,4 +9,16 @@
 #content_left>div[class='result c-container'] {
   height: 0;
   overflow: hidden;
-} */
+}
+
+body>iframe#bookmarks-bs{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 100vh;
+  z-index: 2000;
+  border: 0;
+  background-color: rgba(0, 0, 0, 0.6) !important;
+  transition: width 0.2s ease;
+}
