@@ -35,7 +35,7 @@ app_content_script.init = function () {
     if (!document.onmousemove) {
       document.onmousemove = function (e) {
         const $bookmarks = document.querySelector('#bookmarks-bs')
-        if (e.clientX <= 1 && $bookmarks) {
+        if (e.clientX <= 1 && e.clientY <= 50 && $bookmarks) {
           $bookmarks.style.width = '300px'
         } else if (e.clientX >= 300 && $bookmarks) {
           $bookmarks.style.width = '0'

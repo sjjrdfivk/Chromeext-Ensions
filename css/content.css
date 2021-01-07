@@ -1,3 +1,4 @@
+/* baidu */
 #content_right{
   display: none !important;
 }
@@ -11,6 +12,12 @@
   overflow: hidden;
 }
 
+/* segmentfault */
+.article-content #first-ad, .article-content #second-ad{
+  display: none !important;
+}
+
+/* 书签 */
 body>iframe#bookmarks-bs{
   position: fixed;
   left: 0;

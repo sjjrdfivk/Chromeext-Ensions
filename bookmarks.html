@@ -11,12 +11,19 @@
 
 <body>
   <div id="app">
-    <el-input placeholder="输入关键字进行过滤" v-model="filterText">
-    </el-input>
-    <el-tree :data="data" show-checkbox node-key="id"  :filter-node-method="filterNode" ref="tree"
-      :props="defaultProps" ref="tree">
+    <el-row type="flex" justify="space-between">
+      <el-col :span="14">
+        <el-input placeholder="输入关键字进行过滤" v-model="filterText">
+        </el-input>
+      </el-col>
+      <el-col :span="9">
+        <el-button @click="openSelect">一键打开</el-button>
+      </el-col>
+    </el-row>
+    <el-tree :data="data" show-checkbox node-key="id" :filter-node-method="filterNode" ref="tree" :props="defaultProps"
+      ref="tree">
       <span slot-scope="{node, data}">
-        <a v-if="data.url" href="javascript:;" @click="treeSkipClick(data.url)">{{ node.label }}</a>
+        <a v-if="data.url" href="#" @click="treeSkipClick(data.url)">{{ node.label }}</a>
         <span v-else>{{ node.label }}</span>
       </span>
     </el-tree>

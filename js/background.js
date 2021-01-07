@@ -1,3 +1,5 @@
+var views = chrome.extension.getViews({type:'popup'});
+
 chrome.contextMenus.create({
 	title: '使用百度搜索：%s', // %s表示选中的文字
 	contexts: ['selection'], // 只有当选中文字时才会出现此右键菜单 可选：["all", "page", "frame", "selection", "link", "editable", "image", "video", "audio"]，默认page
@@ -51,6 +53,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 // 	console.log(1,tabId,changeInfo)
 // 	var tabUrl = tab.url;
 //   if (tabUrl.indexOf("baidu") != -1) {
+	// chrome.tabs.executeScript(tabId, {file: 'res/js/content.js'});
 //     chrome.tabs.insertCSS(null, { file: "css/content-d.css" });
 //   }
 // })
