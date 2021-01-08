@@ -48,6 +48,8 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 // 	return {"responseHeaders": responseHeaders};
 // }, {"urls": ["http://*/*", "https://*/*"]}, ["blocking", "responseHeaders", "extraHeaders"]);
 
+// chrome.storage.onChanged.addListener(details => {
+// });
 
 // chrome.tabs.onCreated.addListener(function (tabId,changeInfo) {
 // 	console.log(1,tabId,changeInfo)

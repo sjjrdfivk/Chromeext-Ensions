@@ -17,6 +17,31 @@
   display: none !important;
 }
 
+/* csdn */
+#recommend-right>#recommendAdBox{
+  display: none;
+}
+
+/* 脚本之家 */
+#header>div[class="logom fl"],#header>div[class="logor fr"] {
+  display: none;
+}
+#wrapper>#container>div[class="pt10 clearfix"]{
+  display: none;
+}
+#container .main-right>#sidebar-right>div[class="r300 clearfix"]{
+  display: none;
+}
+#container .main-right div[class="r300 clearfix mt10"]{
+  display: none;
+}
+#container .main-right div[class="mt10 rFixedBox"]{
+  display: none;
+}
+#wrapper>#container #article div[class="lbd clearfix"]{
+  display: none;
+}
+
 /* 书签 */
 body>iframe#bookmarks-bs{
   position: fixed;
