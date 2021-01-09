@@ -40,7 +40,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 });
 
 
-// 跨域
+// 跨域 chrome.webRequest.onHeadersReceived.removeListener(listener);
 // chrome.webRequest.onHeadersReceived.addListener(function (info) {
 // 	// const responseHeaders = info.responseHeaders.filter(e => e.name.toLowerCase() !== "access-control-allow-origin" && e.name.toLowerCase() !== "access-control-allow-methods");
 // 	const responseHeaders = [...info.responseHeaders];

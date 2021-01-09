@@ -13,9 +13,9 @@
 }
 
 /* segmentfault */
-.article-content #first-ad, .article-content #second-ad{
+/* .article-content #first-ad, .article-content #second-ad{
   display: none !important;
-}
+} */
 
 /* csdn */
 #recommend-right>#recommendAdBox{
