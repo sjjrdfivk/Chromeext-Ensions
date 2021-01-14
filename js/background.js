@@ -33,20 +33,37 @@ chrome.contextMenus.create({
 	}
 });
 
-//background 接受来自 contentscript 的消息
+window.app_background = {};
+
+//跨域
+app_background.webrequest = {
+	"close": () => {
+		chrome.webRequest.onHeadersReceived.removeListener(app_background.received);
+	},
+	"open":  (url) => {
+		app_background.webrequest.close()
+		chrome.webRequest.onHeadersReceived.addListener(app_background.received, {"urls": [url ? url : '<all_urls>']}, ["blocking", "responseHeaders", "extraHeaders"]);
+	},
+	"hasListener": () => {
+		return	chrome.webRequest.onHeadersReceived.hasListener(app_background.received)
+	}
+};
+app_background.received = function (info) {
+	const responseHeaders = info.responseHeaders.filter(e => e.name.toLowerCase() !== "access-control-allow-origin" && e.name.toLowerCase() !== "access-control-allow-methods");
+	responseHeaders.push({"name": "Access-Control-Allow-Origin", "value": '*'})
+	return {"responseHeaders": responseHeaders};
+}
+
+//background 接受消息
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-	console.log(sender, "来自内容脚本：" + sender.tab.url + "来自应用");
+	console.log(request);
+	if (request.greeting === 'webrequestOpen') {
+		app_background.webrequest.open(request.url)
+	} else if (request.greeting === 'webrequestclose') {
+		app_background.webrequest.close()
+	}
 	sendResponse({ status: 200 }); //回复
 });
-
-
-// 跨域 chrome.webRequest.onHeadersReceived.removeListener(listener);
-// chrome.webRequest.onHeadersReceived.addListener(function (info) {
-// 	// const responseHeaders = info.responseHeaders.filter(e => e.name.toLowerCase() !== "access-control-allow-origin" && e.name.toLowerCase() !== "access-control-allow-methods");
-// 	const responseHeaders = [...info.responseHeaders];
-// 	responseHeaders.push({"name": "Access-Control-Allow-Origin", "value": '*'})
-// 	return {"responseHeaders": responseHeaders};
-// }, {"urls": ["http://*/*", "https://*/*"]}, ["blocking", "responseHeaders", "extraHeaders"]);
 
 // chrome.storage.onChanged.addListener(details => {
 // });
