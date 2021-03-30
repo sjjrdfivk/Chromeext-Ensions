@@ -42,6 +42,17 @@
   display: none;
 }
 
+/* ant design vue */
+.main-wrapper .ant-row section[class="main-container main-container-component"] div[class="slick-slider slick-initialized"]{
+  display: none;
+}
+#__next ._3VRLsv .-umr26{
+  display: none;
+}
+
+
+/* 简书 */
+
 /* 书签 */
 body>iframe#bookmarks-bs{
   position: fixed;
